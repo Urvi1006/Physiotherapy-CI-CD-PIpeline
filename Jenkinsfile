@@ -1,13 +1,5 @@
 pipeline {
     agent any
-    
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the code from your GitHub repository
-                git 'https://github.com/Urvi1006/Physiotherapy-website.git'
-            }
-        }
         
         
         stage('Deploy') {
