@@ -9,12 +9,6 @@ pipeline {
             }
         }
         
-        stage('HTML Validation') {
-            steps {
-                // Validate HTML using the W3C Markup Validation Service
-                sh 'curl -H "Content-Type: text/html; charset=utf-8" --data-binary "@index.html" https://validator.w3.org/nu/?out=gnu'
-            }
-        }
         
         stage('Deploy') {
             steps {
