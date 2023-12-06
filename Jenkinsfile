@@ -5,35 +5,34 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from your GitHub repository
-                git 'https://github.com/your-username/your-repo.git'
+                git 'https://github.com/Urvi1006/Physiotherapy-website.git'
             }
         }
         
-        stage('Build') {
+        stage('HTML Validation') {
             steps {
-                // Add your build steps here
-                // For example, running tests, compiling code, etc.
-                sh 'your_build_command'
+                // Validate HTML using the W3C Markup Validation Service
+                sh 'curl -H "Content-Type: text/html; charset=utf-8" --data-binary "@index.html" https://validator.w3.org/nu/?out=gnu'
             }
         }
         
         stage('Deploy') {
             steps {
-                // Add your deployment steps here
-                // For example, deploying to a server, pushing to production, etc.
-                sh 'your_deploy_command'
+                // Copy HTML/CSS files to the deployment directory
+                sh 'mkdir public'
+                sh 'cp -r * public/'
             }
         }
     }
     
     post {
         success {
-            // Actions to perform when the build succeeds
-            echo 'Build successful!'
+            // Actions to perform when the deployment succeeds
+            echo 'Deployment successful!'
         }
         failure {
-            // Actions to perform when the build fails
-            echo 'Build failed!'
+            // Actions to perform when the deployment fails
+            echo 'Deployment failed!'
         }
     }
 }
